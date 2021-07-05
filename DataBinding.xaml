@@ -1,0 +1,47 @@
+﻿<Window x:Class="WPF_Exercises.DataBinding"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Exercises"
+        mc:Ignorable="d"
+        Title="DataBinding" Height="450" Width="800">
+    
+    <!--
+    4 Models of Data Binding:
+    Binding Target:    <-  one way    Binding Sourse 
+    Binding Target:    <- twoWays    -> Binding Sourse
+    Binding Target:      oneWayToSourse   -> Binding Sourse
+    Binding Target:    <__ _ _ OneTime  Binding Sourse - done in constructor so only once during initialization
+    
+    -->
+    
+    
+    <StackPanel>
+        <!--OneWay-->
+        <!-- TextBox is the target -->
+        <TextBox Width="100" Margin="50" Text="{Binding ElementName=sliderOneWay, Path=Value, Mode=OneWay}"></TextBox>
+         <!--is binding source--> 
+        <Slider Name="sliderOneWay" Minimum="0" Maximum="100" IsSnapToTickEnabled="True"></Slider>
+
+        <!--TwoWay-->
+        <TextBox Width="100" Margin="50" Text="{Binding ElementName=sliderTwoWay, Path=Value, Mode=TwoWay}"></TextBox>
+        <!-- is binding source -->
+        <!--You have to press Tab button to work-->
+        <Slider Name="sliderTwoWay" Minimum="0" Maximum="100" IsSnapToTickEnabled="True"></Slider>
+
+        <!--OneWayToSource-->
+        <TextBox Width="100" Margin="50" Text="{Binding ElementName=sliderOneWayToSource, Path=Value, Mode=OneWayToSource}"></TextBox>
+        <!--You have to press Tab button to work-->
+        <Slider Name="sliderOneWayToSource" Minimum="0" Maximum="100" IsSnapToTickEnabled="True"></Slider>
+
+        <!--OneTime-->
+        <TextBox Name="txbOneTime" Width="100" Margin="50" Text="{Binding ElementName=sliderOneWayToSource, Path=Value, Mode=OneTime}"></TextBox>
+        <!--You have to press Tab button to work-->
+        <Slider Name="sliderOneTime" Minimum="0" Maximum="100" IsSnapToTickEnabled="True"></Slider>
+
+        <TextBox Name="txbTwoTimeWithoutTab" Width="100" Margin="50" Text="{Binding ElementName=sliderTwoTimeWithoutTab, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <!--Without pressing Tab button -->
+        <Slider Name="sliderTwoTimeWithoutTab" Minimum="0" Maximum="100" IsSnapToTickEnabled="True"></Slider>
+    </StackPanel>
+</Window>
